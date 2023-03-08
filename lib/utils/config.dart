@@ -40,4 +40,6 @@ class Config {
     borderSide: BorderSide(
       color: Colors.red,
     ));
+
+  static const PrimaryColor = Colors.greenAccent;
 }

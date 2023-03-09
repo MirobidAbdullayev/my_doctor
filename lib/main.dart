@@ -1,4 +1,11 @@
+import 'package:my_doctor/main_layout.dart';
+import 'package:my_doctor/models/auth_model.dart';
+import 'package:my_doctor/screens/auth_page.dart';
+import 'package:my_doctor/screens/booking_page.dart';
+import 'package:my_doctor/screens/success_booked.dart';
+import 'package:my_doctor/utils/config.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());

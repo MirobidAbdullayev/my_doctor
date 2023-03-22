@@ -1,24 +1,22 @@
-import 'dart:convert';
-
 import 'package:my_doctor/components/button.dart';
 import 'package:my_doctor/main.dart';
 import 'package:my_doctor/models/auth_model.dart';
 import 'package:my_doctor/providers/dio_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/config.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class SignUpForm extends StatefulWidget {
+  SignUpForm({Key? key}) : super(key: key);
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   bool obsecurePass = true;
@@ -29,6 +27,19 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          TextFormField(
+            controller: _nameController,
+            keyboardType: TextInputType.text,
+            cursorColor: Config.PrimaryColor,
+            decoration: const InputDecoration(
+              hintText: 'Username',
+              labelText: 'Username',
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.person_outlined),
+              prefixIconColor: Config.PrimaryColor,
+            ),
+          ),
+          Config.spaceSmall,
           TextFormField(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
@@ -74,44 +85,25 @@ class _LoginFormState extends State<LoginForm> {
             builder: (context, auth, child) {
               return Button(
                 width: double.infinity,
-                title: 'Sign In',
+                title: 'Sign Up',
                 onPressed: () async {
-                  //login here
-                  final token = await DioProvider()
-                      .getToken(_emailController.text, _passController.text);
+                  final userRegistration = await DioProvider().registerUser(
+                      _nameController.text,
+                      _emailController.text,
+                      _passController.text);
 
-                  if (token) {
-                    //auth.loginSuccess(); //update login status
-                    //rediret to main page
+                  //if register success, proceed to login
+                  if (userRegistration) {
+                    final token = await DioProvider()
+                        .getToken(_emailController.text, _passController.text);
 
-                    //grab user data here
-                    final SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    final tokenValue = prefs.getString('token') ?? '';
-
-                    if (tokenValue.isNotEmpty && tokenValue != '') {
-                      //get user data
-                      final response = await DioProvider().getUser(tokenValue);
-                      if (response != null) {
-                        setState(() {
-                          //json decode
-                          Map<String, dynamic> appointment = {};
-                          final user = json.decode(response);
-
-                          //check if any appointment today
-                          for (var doctorData in user['doctor']) {
-                            //if there is appointment return for today
-
-                            if (doctorData['appointments'] != null) {
-                              appointment = doctorData;
-                            }
-                          }
-
-                          auth.loginSuccess(user, appointment);
-                          MyApp.navigatorKey.currentState!.pushNamed('main');
-                        });
-                      }
+                    if (token) {
+                      auth.loginSuccess({}, {}); //update login status
+                      //rediret to main page
+                      MyApp.navigatorKey.currentState!.pushNamed('main');
                     }
+                  } else {
+                    print('register not successful');
                   }
                 },
                 disable: false,

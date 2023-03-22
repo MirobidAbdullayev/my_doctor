@@ -29,17 +29,15 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           //pre-define input decoration
           inputDecorationTheme: const InputDecorationTheme(
-            focusColor: Config.primaryColor,
-            border: Config.outlinedBorder,
+            focusColor: Config.PrimaryColor,
             focusedBorder: Config.focusBorder,
             errorBorder: Config.errorBorder,
-            enabledBorder: Config.outlinedBorder,
-            floatingLabelStyle: TextStyle(color: Config.primaryColor),
+            floatingLabelStyle: TextStyle(color: Config.PrimaryColor),
             prefixIconColor: Colors.black38,
           ),
           scaffoldBackgroundColor: Colors.white,
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: Config.primaryColor,
+            backgroundColor: Config.PrimaryColor,
             selectedItemColor: Colors.white,
             showSelectedLabels: true,
             showUnselectedLabels: false,

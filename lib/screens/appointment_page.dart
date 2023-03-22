@@ -116,7 +116,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                     width: 100,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: Config.primaryColor,
+                      color: Config.PrimaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
@@ -208,7 +208,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                   child: const Text(
                                     'Cancel',
                                     style:
-                                        TextStyle(color: Config.primaryColor),
+                                        TextStyle(color: Config.PrimaryColor),
                                   ),
                                 ),
                               ),
@@ -218,7 +218,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                               Expanded(
                                 child: OutlinedButton(
                                   style: OutlinedButton.styleFrom(
-                                    backgroundColor: Config.primaryColor,
+                                    backgroundColor: Config.PrimaryColor,
                                   ),
                                   onPressed: () {},
                                   child: const Text(
@@ -266,7 +266,7 @@ class ScheduleCard extends StatelessWidget {
         children: <Widget>[
           const Icon(
             Icons.calendar_today,
-            color: Config.primaryColor,
+            color: Config.PrimaryColor,
             size: 15,
           ),
           const SizedBox(
@@ -275,7 +275,7 @@ class ScheduleCard extends StatelessWidget {
           Text(
             '$day, $date',
             style: const TextStyle(
-              color: Config.primaryColor,
+              color: Config.PrimaryColor,
             ),
           ),
           const SizedBox(
@@ -283,7 +283,7 @@ class ScheduleCard extends StatelessWidget {
           ),
           const Icon(
             Icons.access_alarm,
-            color: Config.primaryColor,
+            color: Config.PrimaryColor,
             size: 17,
           ),
           const SizedBox(
@@ -293,7 +293,7 @@ class ScheduleCard extends StatelessWidget {
               child: Text(
             time,
             style: const TextStyle(
-              color: Config.primaryColor,
+              color: Config.PrimaryColor,
             ),
           ))
         ],

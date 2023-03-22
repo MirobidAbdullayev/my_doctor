@@ -1,4 +1,5 @@
 import 'package:my_doctor/components/login_form.dart';
+// ignore: unused_import
 import 'package:my_doctor/components/sign_up_form.dart';
 import 'package:my_doctor/components/social_button.dart';
 import 'package:my_doctor/utils/text.dart';
@@ -48,7 +49,7 @@ class _AuthPageState extends State<AuthPage> {
               ),
             ),
             Config.spaceSmall,
-            isSignIn ? LoginForm() : SignUpForm(),
+            isSignIn ? const LoginForm() : SignUpForm(),
             Config.spaceSmall,
             isSignIn
                 ? Center(

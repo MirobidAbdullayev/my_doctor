@@ -41,5 +41,6 @@ class Config {
       color: Colors.red,
     ));
 
+  // ignore: constant_identifier_names
   static const PrimaryColor = Colors.greenAccent;
 }
